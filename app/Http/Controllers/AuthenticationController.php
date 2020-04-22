@@ -4,10 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\User;
+use Hash;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
-use Lcobucci\JWT\Parser;
-use Hash;
 
 class AuthenticationController extends Controller
 {
@@ -61,5 +60,16 @@ class AuthenticationController extends Controller
 
         return response($response, 200);
 
+    }
+
+    public function verify(Request $request)
+    {
+        // Find 
+        $user = User::where('name', $request->name)->first();
+
+        if($user)
+        {
+            return $user->id;
+        }
     }
 }
