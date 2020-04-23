@@ -64,7 +64,6 @@ class AuthenticationController extends Controller
 
     public function verify(Request $request)
     {
-        // Find 
         $user = User::where('name', $request->name)->first();
 
         if($user)
