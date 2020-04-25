@@ -20,6 +20,7 @@ class AuthenticationController extends Controller
                 $response = [
                     'data' => [
                         'token' => $token,
+                        'name' => $user->name,
                     ],
                 ];
                 return response($response, 200);
@@ -56,7 +57,10 @@ class AuthenticationController extends Controller
         $user = User::create($request->toArray());
 
         $token = $user->createToken('Laravel Password Grant Client')->accessToken;
-        $response = ['token' => $token];
+        $response = [
+            'token' => $token,
+            'name' => $user->name,
+        ];
 
         return response($response, 200);
 
@@ -66,8 +70,7 @@ class AuthenticationController extends Controller
     {
         $user = User::where('name', $request->name)->first();
 
-        if($user)
-        {
+        if ($user) {
             // return $user->id;
             return response()->json(['bio' => $user->bio]);
         }
