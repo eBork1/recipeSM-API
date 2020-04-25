@@ -14,6 +14,5 @@ class ProfileController extends Controller
             ->update([
                 'bio' => $request->bio,
             ]);
-        return $request->user();
     }
 }
