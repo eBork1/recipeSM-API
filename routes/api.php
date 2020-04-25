@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use app\User;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,6 +36,6 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 |--------------------------------------------------------------------------
  */
 
-//  Route::get('/getprofile'
+ Route::middleware("auth:api")->post('/updatebio', 'ProfileController@updateBio')->name('updateBio');
 
 
