@@ -69,7 +69,7 @@ class AuthenticationController extends Controller
         if($user)
         {
             // return $user->id;
-            return response()->json(['userID' => $user->id, 'bio' => $user->bio]);
+            return response()->json(['bio' => $user->bio]);
         }
     }
 }
