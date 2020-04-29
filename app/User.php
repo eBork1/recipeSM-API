@@ -43,4 +43,8 @@ class User extends Authenticatable
     {
         return Hash::check($password, $this->password);
     }
+    
+    public function recipe(){
+        return $this->hasMany("App\Recipe");
+    }
 }
