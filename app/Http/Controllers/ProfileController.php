@@ -7,12 +7,12 @@ use Illuminate\Http\Request;
 
 class ProfileController extends Controller
 {
-    public function updateBio(Request $request)
+    public function updateBio(Request $data)
     {
-        $userID = $request->user()->id;
+        $userID = $data->user()->id;
         User::where('id', $userID)
             ->update([
-                'bio' => $request->bio,
+                'bio' => $data->bio,
             ]);
     }
 }
