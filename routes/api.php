@@ -1,8 +1,8 @@
 <?php
 
+use app\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use app\User;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,24 +36,20 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 |--------------------------------------------------------------------------
  */
 
- Route::middleware("auth:api")->post('/updatebio', 'ProfileController@updateBio')->name('updateBio');
+Route::middleware("auth:api")->post('/updatebio', 'ProfileController@updateBio')->name('updateBio');
 
- /*
+/*
 |--------------------------------------------------------------------------
 | Recipes
 |--------------------------------------------------------------------------
  */
 
- // Get user recipes
+// Get a specific user's recipes
+Route::get('/recipes/{username}', 'RecipeController@getUserRecipes')->name('getUserRecipes');
 
- // Create recipe
- Route::middleware("auth:api")->post('/createrecipe', 'RecipeController@create')->name('createrecipe');
+// Create recipe
+Route::middleware("auth:api")->post('/createrecipe', 'RecipeController@create')->name('createrecipe');
 
- // Update user recipe
+// Update user recipe
 
- // Delete user recipe
-
-
-
-
-
+// Delete user recipe
