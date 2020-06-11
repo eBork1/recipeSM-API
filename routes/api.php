@@ -47,6 +47,9 @@ Route::middleware("auth:api")->post('/updatebio', 'ProfileController@updateBio')
 // Get a specific user's recipes
 Route::get('/recipes/{username}', 'RecipeController@getUserRecipes')->name('getUserRecipes');
 
+// Get a specific recipe
+Route::get('/recipes/{id}', 'RecipeController@getUserRecipes')->name('getRecipe');
+
 // Create recipe
 Route::middleware("auth:api")->post('/createrecipe', 'RecipeController@create')->name('createrecipe');
 
