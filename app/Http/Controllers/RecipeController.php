@@ -16,6 +16,12 @@ class RecipeController extends Controller
         return response()->json($recipes);
     }
 
+    public function getSingleRecipe($recipeID)
+    {
+        $recipe = Recipe::where("id", $recipeID)->get();
+        return response($recipe);
+    }
+
     public function create(Request $data)
     {
         Recipe::create([
