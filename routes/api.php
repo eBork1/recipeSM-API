@@ -38,6 +38,8 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::middleware("auth:api")->post('/updatebio', 'ProfileController@updateBio')->name('updateBio');
 
+// Route::middleware("auth:api")->
+
 /*
 |--------------------------------------------------------------------------
 | Recipes
@@ -48,7 +50,7 @@ Route::middleware("auth:api")->post('/updatebio', 'ProfileController@updateBio')
 Route::get('/recipes/{username}', 'RecipeController@getUserRecipes')->name('getUserRecipes');
 
 // Get a specific recipe
-Route::get('/recipes/{id}', 'RecipeController@getUserRecipes')->name('getRecipe');
+Route::get('/recipe/{recipeID}', 'RecipeController@getSingleRecipe')->name('getSingleRecipe');
 
 // Create recipe
 Route::middleware("auth:api")->post('/createrecipe', 'RecipeController@create')->name('createrecipe');
