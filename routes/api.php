@@ -38,7 +38,8 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::middleware("auth:api")->post('/updatebio', 'ProfileController@updateBio')->name('updateBio');
 
-// Route::middleware("auth:api")->
+// Follows
+Route::middleware("auth:api")->post('/createfollow', 'FollowController@createFollow')->name('createFollow');
 
 /*
 |--------------------------------------------------------------------------
