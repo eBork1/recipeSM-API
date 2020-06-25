@@ -42,7 +42,7 @@ Route::middleware("auth:api")->post('/updatebio', 'ProfileController@updateBio')
 Route::middleware("auth:api")->post('/createfollow', 'FollowController@createFollow')->name('createFollow');
 Route::middleware("auth:api")->post('/unfollow', 'FollowController@unfollow')->name('unfollow');
 Route::get('/getfollowers/{username}', "FollowController@getFollowersInfo")->name('getFollowersInfo');
-
+Route::get('/getfollowedusers/{username}', "FollowController@getFollowedUsers")->name('getFollowedUsers');
 /*
 |--------------------------------------------------------------------------
 | Recipes
