@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\User;
 use App\Follow;
+use App\User;
+use DB;
 use Illuminate\Http\Request;
 
 class FollowController extends Controller
@@ -19,13 +20,29 @@ class FollowController extends Controller
         return response("success");
     }
 
-    // public function unfollow()
+    public function unfollow()
+    {
+        
+    }
+
+    public function getFollowersInfo($username)
+    {
+        // Get users ID based on the name passed into the call
+        $id = User::where('name', $username)->first()->id;
+        // Get user entries where id exists on follows table where followed user == $id
+        $users = User::select('users.id', 'name', 'bio')
+            ->join('follows', 'follows.user_id', '=', 'users.id')
+            ->where('follows.followed_user', $id)
+            ->get();
+        return response()->json($users);
+    }
+
+    // public function getFollowingInfo(Request $data)
     // {
-    //     //
+    //     $user = $data->username;
+
+    //     // Get a list of who the user is following
+    //     // Returns entire user entry of each person user is following
     // }
 
-    // public function getFollowerCount(Request $data)
-    // {
-
-    // }
 }
