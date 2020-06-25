@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Follow;
 use App\User;
-use DB;
 use Illuminate\Http\Request;
 
 class FollowController extends Controller
@@ -12,7 +11,6 @@ class FollowController extends Controller
     public function createFollow(Request $data)
     {
         $followed_user_id = User::where('name', $data->followed_user)->first()->id;
-
         Follow::create([
             "user_id" => $data->user()->id,
             "followed_user" => $followed_user_id,
@@ -20,9 +18,14 @@ class FollowController extends Controller
         return response("success");
     }
 
-    public function unfollow()
+    public function unfollow(Request $data)
     {
-        
+        $userToUnfollow = User::where('name', $data->userToUnfollow)->first()->id;
+        Follow::where([
+            ["user_id", "=", $data->user()->id],
+            ["followed_user", "=", $userToUnfollow],
+        ])->delete();
+        return response("user " . $data->user()->id . "unfollowed user " . $userToUnfollow);
     }
 
     public function getFollowersInfo($username)
