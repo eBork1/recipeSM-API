@@ -40,6 +40,7 @@ Route::middleware("auth:api")->post('/updatebio', 'ProfileController@updateBio')
 
 // Follows
 Route::middleware("auth:api")->post('/createfollow', 'FollowController@createFollow')->name('createFollow');
+Route::get('/getfollowers/{username}', "FollowController@getFollowersInfo")->name('getFollowersInfo');
 
 /*
 |--------------------------------------------------------------------------
