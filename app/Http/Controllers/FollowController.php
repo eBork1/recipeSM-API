@@ -40,12 +40,16 @@ class FollowController extends Controller
         return response()->json($users);
     }
 
-    // public function getFollowingInfo(Request $data)
-    // {
-    //     $user = $data->username;
+    public function getFollowedUsers($username)
+    {
+        // Get users ID based on the name passed into the call
+        $id = User::where('name', $username)->first()->id;
 
-    //     // Get a list of who the user is following
-    //     // Returns entire user entry of each person user is following
-    // }
+        $users = User::select('users.id', 'name', 'bio')
+            ->join('follows', 'follows.followed_user', '=', 'users.id')
+            ->where('follows.user_id', $id)
+            ->get();
+        return response()->json($users);
+    }
 
 }
