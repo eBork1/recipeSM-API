@@ -44,7 +44,7 @@ class FollowController extends Controller
     {
         // Get users ID based on the name passed into the call
         $id = User::where('name', $username)->first()->id;
-
+        // Get user entries where id exists on follows table where user_id == $id
         $users = User::select('users.id', 'name', 'bio')
             ->join('follows', 'follows.followed_user', '=', 'users.id')
             ->where('follows.user_id', $id)
