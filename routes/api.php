@@ -38,11 +38,18 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::middleware("auth:api")->post('/updatebio', 'ProfileController@updateBio')->name('updateBio');
 
-// Follows
+/*
+|--------------------------------------------------------------------------
+| Follows
+|--------------------------------------------------------------------------
+ */
+// Auth Protected
 Route::middleware("auth:api")->post('/createfollow', 'FollowController@createFollow')->name('createFollow');
 Route::middleware("auth:api")->post('/unfollow', 'FollowController@unfollow')->name('unfollow');
+// Public
 Route::get('/getfollowers/{username}', "FollowController@getFollowersInfo")->name('getFollowersInfo');
 Route::get('/getfollowedusers/{username}', "FollowController@getFollowedUsers")->name('getFollowedUsers');
+
 /*
 |--------------------------------------------------------------------------
 | Recipes
